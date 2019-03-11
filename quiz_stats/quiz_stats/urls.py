@@ -15,12 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from api.resources import ProjectResource, TokenResource, QuestionResource, RelationshipResource
+from api.resources import ProjectResource, TokenResource, QuestionResource, RelationshipResource, AnswerResource
 
 project_resource = ProjectResource()
 token_resource = TokenResource()
 question_resource = QuestionResource()
 relationship_resource = RelationshipResource()
+answer_resource = AnswerResource()
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -28,4 +29,5 @@ urlpatterns = [
     url(r'^api/', include(token_resource.urls)),
     url(r'^api/', include(question_resource.urls)),
     url(r'^api/', include(relationship_resource.urls)),
+    url(r'^api/', include(answer_resource.urls)),
 ]

@@ -38,3 +38,10 @@ class Relationship(models.Model):
   value = models.IntegerField(default=0)
   created = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
+
+class Answer(models.Model):
+  project_id = models.ForeignKey(Project)
+  question_id = models.ForeignKey(Question)
+  answer = models.BooleanField(default=True)
+  created = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)

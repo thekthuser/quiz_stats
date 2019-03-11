@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from tastypie.resources import ModelResource
-from api.models import Project, Token, Question, Relationship
+from api.models import Project, Token, Question, Relationship, Answer
 
 class ProjectResource(ModelResource):
   class Meta:
@@ -22,3 +22,8 @@ class RelationshipResource(ModelResource):
   class Meta:
     queryset = Relationship.objects.all()
     resource_name = 'relationship'
+
+class AnswerResource(ModelResource):
+  class Meta:
+    queryset = Answer.objects.all()
+    resource_name = 'answer'

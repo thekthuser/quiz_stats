@@ -15,13 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from api.resources import ProjectResource, TokenResource
+from api.resources import ProjectResource, TokenResource, QuestionResource
 
 project_resource = ProjectResource()
 token_resource = TokenResource()
+question_resource = QuestionResource()
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(project_resource.urls)),
     url(r'^api/', include(token_resource.urls)),
+    url(r'^api/', include(question_resource.urls)),
 ]

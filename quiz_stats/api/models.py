@@ -22,3 +22,11 @@ class Token(models.Model):
 
   def __str__(self):
     return self.name
+
+class Question(models.Model):
+  project_id = models.ForeignKey(Project)
+  text = models.CharField(max_length=255, default='Dev Question?')
+  is_active = models.BooleanField(default=True)
+  next_question_id = models.ForeignKey('self', related_name='prev_question_id')
+  created = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)

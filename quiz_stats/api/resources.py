@@ -20,7 +20,6 @@ class TokenResource(ModelResource):
     queryset = Token.objects.all()
     resource_name = 'token'
     include_resource_uri = False
-    authorization = AdminAuthorization()
 
 class QuestionResource(ModelResource):
   project_id = tasty_fields.ForeignKey(ProjectResource, attribute='project_id', full=True)
@@ -37,6 +36,8 @@ class RelationshipResource(ModelResource):
     queryset = Relationship.objects.all()
     resource_name = 'relationship'
     include_resource_uri = False
+    authentication = BasicAuthentication()
+    authorization = AdminAuthorization()
 
 class AnswerResource(ModelResource):
   project_id = tasty_fields.ForeignKey(ProjectResource, attribute='project_id', full=True)

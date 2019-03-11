@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
+from django.contrib.auth.models import User
 from tastypie import fields as tasty_fields
 from tastypie.resources import ModelResource
+from tastypie.authentication import BasicAuthentication
 from api.models import Project, Token, Question, Relationship, Answer
 
 class ProjectResource(ModelResource):
@@ -39,3 +41,10 @@ class AnswerResource(ModelResource):
     queryset = Answer.objects.all()
     resource_name = 'answer'
     include_resource_uri = False
+
+class UserResource(ModelResource):
+  class Meta:
+    queryset = User.objects.all()
+    resource_name = 'auth/user'
+    excludes = ['email', 'password', 'is_superuser']
+    authentication = BasicAuthentication()

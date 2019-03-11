@@ -30,3 +30,11 @@ class Question(models.Model):
   next_question_id = models.ForeignKey('self', related_name='prev_question_id')
   created = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
+
+class Relationship(models.Model):
+  project_id = models.ForeignKey(Project)
+  question_id = models.ForeignKey(Question)
+  token_id = models.ForeignKey(Token)
+  value = models.IntegerField(default=0)
+  created = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)

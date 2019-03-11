@@ -12,3 +12,13 @@ class Project(models.Model):
 
   def __str__(self):
     return self.name
+
+class Token(models.Model):
+  project_id = models.ForeignKey(Project)
+  name = models.CharField(max_length=127, default='Untitled Token')
+  description = models.CharField(max_length=255, default='')
+  created = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)
+
+  def __str__(self):
+    return self.name

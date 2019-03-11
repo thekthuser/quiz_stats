@@ -5,18 +5,22 @@ from tastypie import fields as tasty_fields
 from tastypie.resources import ModelResource
 from tastypie.authentication import BasicAuthentication
 from api.models import Project, Token, Question, Relationship, Answer
+from api.authorization import AdminAuthorization
 
 class ProjectResource(ModelResource):
   class Meta:
     queryset = Project.objects.all()
     resource_name = 'project'
+    authentication = BasicAuthentication()
+    authorization = AdminAuthorization()
 
 class TokenResource(ModelResource):
-  project_id = tasty_fields.ForeignKey(ProjectResource, attribute='project_id', full=True)
+  project_id = tasty_fields.ForeignKey(ProjectResource, attribute='project_id', full=True, null=True)
   class Meta:
     queryset = Token.objects.all()
     resource_name = 'token'
     include_resource_uri = False
+    authorization = AdminAuthorization()
 
 class QuestionResource(ModelResource):
   project_id = tasty_fields.ForeignKey(ProjectResource, attribute='project_id', full=True)

@@ -1,27 +1,31 @@
-console.log('enter vue');
 new Vue({
  el: "#main",
  delimiters: ['[[', ']]'],
  data: {
-   projects: [],
+   questions: [],
   },
   methods: {
     getProjects: function() {
-    let that = this;
     this.$http.get("/api/project/")
       .then((response) => {
-        that.projects = response.data.objects;
-        console.log('getProjects success');
-        console.log(this.projects);
+        this.projects = response.data.objects;
       })
       .catch((err) => {
-        console.log('getProjects error');
+        console.log(err);
+      })
+    },
+    getQuestions: function() {
+    this.$http.get("/api/question/")
+      .then((response) => {
+        this.questions = response.data.objects;
+        console.log(this.questions);
+      })
+      .catch((err) => {
         console.log(err);
       })
     },
   },
   mounted: function() {
-    this.getProjects();
-    console.log('mounted');
+    this.getQuestions();
   },
 });

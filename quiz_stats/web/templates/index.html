@@ -5,12 +5,11 @@
   </head>
   <body>
     <div id='main'>
-      <button v-on:click="getProjects()">Get Projects</button><br />
-      asdf<br />
-      [[ projects ]]<br />
-      <tr v-for="project in projects">
-        {# <td>[[ project ]]<td> #}
-      </tr>
+      {# <button v-on:click="getProjects()">Get Projects</button><br /> #}
+      <div v-for="question in questions" :key="question.id" >
+        <!-- Project with id 1 is hardcoded here. -->
+        <p v-if="question.is_active && question.project.id == 1">[[ question.text ]]</p>
+      </p>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.1/vue-resource.js"></script>

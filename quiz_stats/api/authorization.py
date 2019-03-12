@@ -1,6 +1,7 @@
 from tastypie.authorization import Authorization
 from tastypie.exceptions import Unauthorized
 
+#This class was copied from https://django-tastypie.readthedocs.io/en/latest/authorization.html
 class UserObjectsOnlyAuthorization(Authorization):
   def read_list(self, object_list, bundle):
     # This assumes a ``QuerySet`` from ``ModelResource``.

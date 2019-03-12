@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.contrib.auth.models import User
 
 class Project(models.Model):
   name = models.CharField(max_length=127, default='Untitled Project')
@@ -43,5 +44,6 @@ class Answer(models.Model):
   project_id = models.ForeignKey(Project)
   question_id = models.ForeignKey(Question)
   answer = models.BooleanField(default=True)
+  user = models.ForeignKey(User)
   created = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)

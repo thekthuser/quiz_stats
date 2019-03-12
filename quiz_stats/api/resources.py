@@ -5,7 +5,7 @@ from tastypie import fields as tasty_fields
 from tastypie.resources import ModelResource
 from tastypie.authentication import BasicAuthentication
 from api.models import Project, Token, Question, Relationship, Answer
-from api.authorization import AdminAuthorization, TokenAuthorization
+from api.authorization import AdminAuthorization, TokenAuthorization, QuestionAuthorization
 
 class ProjectResource(ModelResource):
   class Meta:
@@ -29,6 +29,8 @@ class QuestionResource(ModelResource):
     queryset = Question.objects.all()
     resource_name = 'question'
     include_resource_uri = False
+    authentication = BasicAuthentication()
+    authorization = QuestionAuthorization()
 
 class RelationshipResource(ModelResource):
   project_id = tasty_fields.ForeignKey(ProjectResource, attribute='project_id', full=True)

@@ -59,3 +59,4 @@ class UserResource(ModelResource):
     resource_name = 'auth/user'
     excludes = ['email', 'password', 'is_superuser']
     authentication = BasicAuthentication()
+    authorization = AdminAuthorization()

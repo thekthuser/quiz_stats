@@ -8,7 +8,11 @@
       {# <button v-on:click="getProjects()">Get Projects</button><br /> #}
       <div v-for="question in questions" :key="question.id" >
         <!-- Project with id 1 is hardcoded here. -->
-        <p v-if="question.is_active && question.project.id == 1">[[ question.text ]]</p>
+        <p v-if="question.is_active && question.project.id == 1">
+          [[ question.text ]]
+          <input type="checkbox" @change="sendAnswer(question.project.id, question.id, $event.target.checked)">
+          {# <button v-on:click="sendAnswer(question.project.id, question.id)">Send Answer</button> #}
+        </p>
       </p>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>

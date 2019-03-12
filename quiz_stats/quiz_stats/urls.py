@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.views.generic import TemplateView
 from api.resources import ProjectResource, TokenResource, QuestionResource, RelationshipResource, AnswerResource
 
 project_resource = ProjectResource()
@@ -30,4 +31,5 @@ urlpatterns = [
     url(r'^api/', include(question_resource.urls)),
     url(r'^api/', include(relationship_resource.urls)),
     url(r'^api/', include(answer_resource.urls)),
+    url(r'/', TemplateView.as_view(template_name='index.html')),
 ]

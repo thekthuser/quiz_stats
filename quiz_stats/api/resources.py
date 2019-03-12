@@ -15,7 +15,7 @@ class ProjectResource(ModelResource):
     authorization = AdminAuthorization()
 
 class TokenResource(ModelResource):
-  project_id = tasty_fields.ForeignKey(ProjectResource, attribute='project_id', full=True, null=True)
+  project = tasty_fields.ForeignKey(ProjectResource, attribute='project', full=True, null=True)
   class Meta:
     queryset = Token.objects.all()
     resource_name = 'token'
@@ -24,7 +24,7 @@ class TokenResource(ModelResource):
     authorization = TokenAuthorization()
 
 class QuestionResource(ModelResource):
-  project_id = tasty_fields.ForeignKey(ProjectResource, attribute='project_id', full=True)
+  project = tasty_fields.ForeignKey(ProjectResource, attribute='project', full=True, null=True)
   class Meta:
     queryset = Question.objects.all()
     resource_name = 'question'
@@ -33,9 +33,9 @@ class QuestionResource(ModelResource):
     authorization = QuestionAuthorization()
 
 class RelationshipResource(ModelResource):
-  project_id = tasty_fields.ForeignKey(ProjectResource, attribute='project_id', full=True)
-  question_id = tasty_fields.ForeignKey(QuestionResource, attribute='question_id', full=True)
-  token_id = tasty_fields.ForeignKey(TokenResource, attribute='token_id')
+  project = tasty_fields.ForeignKey(ProjectResource, attribute='project', full=True, null=True)
+  question = tasty_fields.ForeignKey(QuestionResource, attribute='question', full=True, null=True)
+  token = tasty_fields.ForeignKey(TokenResource, attribute='token')
   class Meta:
     queryset = Relationship.objects.all()
     resource_name = 'relationship'
@@ -44,8 +44,8 @@ class RelationshipResource(ModelResource):
     authorization = AdminAuthorization()
 
 class AnswerResource(ModelResource):
-  project_id = tasty_fields.ForeignKey(ProjectResource, attribute='project_id', full=True)
-  question_id = tasty_fields.ForeignKey(QuestionResource, attribute='question_id', full=True)
+  project = tasty_fields.ForeignKey(ProjectResource, attribute='project', full=True, null=True)
+  question = tasty_fields.ForeignKey(QuestionResource, attribute='question', full=True, null=True)
   class Meta:
     queryset = Answer.objects.all()
     resource_name = 'answer'

@@ -31,5 +31,5 @@ urlpatterns = [
     url(r'^api/', include(question_resource.urls)),
     url(r'^api/', include(relationship_resource.urls)),
     url(r'^api/', include(answer_resource.urls)),
-    url(r'/', TemplateView.as_view(template_name='index.html')),
+    url(r'^index/$', TemplateView.as_view(template_name='index.html')),
 ]

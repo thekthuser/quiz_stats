@@ -4,7 +4,6 @@ new Vue({
  delimiters: ['[[', ']]'],
  data: {
    projects: [],
-   testing: 'TESTING',
   },
   methods: {
     getProjects: function() {

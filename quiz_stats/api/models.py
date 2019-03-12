@@ -15,7 +15,7 @@ class Project(models.Model):
     return self.name
 
 class Token(models.Model):
-  project_id = models.ForeignKey(Project)
+  project = models.ForeignKey(Project)
   name = models.CharField(max_length=127, default='Untitled Token')
   description = models.CharField(max_length=255, default='')
   created = models.DateTimeField(auto_now_add=True)
@@ -25,24 +25,24 @@ class Token(models.Model):
     return self.name
 
 class Question(models.Model):
-  project_id = models.ForeignKey(Project)
+  project = models.ForeignKey(Project)
   text = models.CharField(max_length=255, default='Dev Question?')
   is_active = models.BooleanField(default=True)
-  next_question_id = models.ForeignKey('self', related_name='prev_question_id')
+  next_question = models.ForeignKey('self', related_name='prev_question_id')
   created = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
 
 class Relationship(models.Model):
-  project_id = models.ForeignKey(Project)
-  question_id = models.ForeignKey(Question)
-  token_id = models.ForeignKey(Token)
+  project = models.ForeignKey(Project)
+  question = models.ForeignKey(Question)
+  token = models.ForeignKey(Token)
   value = models.IntegerField(default=0)
   created = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
 
 class Answer(models.Model):
-  project_id = models.ForeignKey(Project)
-  question_id = models.ForeignKey(Question)
+  project = models.ForeignKey(Project)
+  question = models.ForeignKey(Question)
   answer = models.BooleanField(default=True)
   user = models.ForeignKey(User)
   created = models.DateTimeField(auto_now_add=True)

@@ -28,7 +28,7 @@ class Question(models.Model):
   project = models.ForeignKey(Project)
   text = models.CharField(max_length=255, default='Dev Question?')
   is_active = models.BooleanField(default=True)
-  next_question = models.ForeignKey('self', related_name='prev_question_id')
+  next_question = models.ForeignKey('self', related_name='prev_question_id', null=True)
   created = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
 

@@ -24,11 +24,11 @@ new Vue({
         console.log(err);
       })
     },
-    sendAnswer: function(project_id, question_id, is_active) {
-      console.log('sendAnswer');
-      console.log(project_id);
-      console.log(question_id);
-      console.log(is_active);
+    sendAnswer: function(project_id, question_id, answer) {
+      let data = {'project': project_id, 'question': '/api/question/' + question_id, 'answer': answer}
+      this.$http.post('/api/answer/', data, {
+      }, 
+      headers={'content-type':'application/json'});
     },
   },
   mounted: function() {
